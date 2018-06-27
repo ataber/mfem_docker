@@ -14,7 +14,7 @@ RUN apt-get update --fix-missing \
 
 RUN cd /tmp && \
     git clone https://github.com/mfem/mfem.git && \
-    cd libmesh && \
+    cd mfem && \
     mkdir build && \
     cd build && \
     cmake .. -DCMAKE_INSTALL_PREFIX=/opt/mfem \
