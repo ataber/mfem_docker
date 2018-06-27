@@ -1,0 +1,27 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: docker:17.06.0-ce-git
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - setup_remote_docker:
+          reusable: true
+          exclusive: true
+
+      - run:
+          name: Install bash
+          command: apk add --no-cache bash
+
+      - run:
+          name: Build image
+          command: docker build -t ataber/mfem .
+
+      - deploy:
+          name: Deploy image to Docker Hub
+          command: |
+            docker login --username ${DOCKER_USER} --password ${DOCKER_PASSWORD}
+            docker push ataber/mfem
