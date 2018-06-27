@@ -17,11 +17,10 @@ RUN cd /tmp && \
     cd libmesh && \
     mkdir build && \
     cd build && \
-    ../configure 
-      -DCMAKE_INSTALL_PREFIX=/opt/mfem
-      -DMFEM_THREAD_SAFE=YES
-      -DMFEM_USE_OPENMP=YES
-      -DMFEM_USE_MPI=YES && \
+    cmake .. -DCMAKE_INSTALL_PREFIX=/opt/mfem \
+             -DMFEM_THREAD_SAFE=YES \
+             -DMFEM_USE_OPENMP=YES \
+             -DMFEM_USE_MPI=YES && \
     make -j $(cat /proc/cpuinfo | grep processor | wc -l) && \
     make install && \
     cd /tmp && rm -rf mfem
