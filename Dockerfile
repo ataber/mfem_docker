@@ -16,8 +16,7 @@ RUN cd /tmp && \
     cd hypre-2.10.0b/src && \
     ./configure && \
     make -j $(cat /proc/cpuinfo | grep processor | wc -l)&& \
-    make install && \
-    make clean
+    make install
 RUN cd /tmp && \
     git clone https://github.com/mfem/mfem.git && \
     cd mfem && \
@@ -33,5 +32,5 @@ RUN cd /tmp && \
              -DMFEM_USE_MPI=YES && \
     make -j $(cat /proc/cpuinfo | grep processor | wc -l) && \
     make install && \
-    cd /tmp && rm -rf mfem
+    cd /tmp && rm -rf mfem && rm -rf hypre-2.10.0b
 ENV MFEM_DIR /opt/mfem
