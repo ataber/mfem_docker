@@ -22,7 +22,7 @@ RUN cd /tmp && \
              -DMFEM_USE_OPENMP=YES \
              -DPETSC_DIR=$PETSC_DIR \
              -DMFEM_USE_MPI=NO && \
-    make serial -j $(cat /proc/cpuinfo | grep processor | wc -l) && \
+    make -j $(cat /proc/cpuinfo | grep processor | wc -l) && \
     make install && \
     cd /tmp && rm -rf mfem
 ENV MFEM_DIR /opt/mfem
