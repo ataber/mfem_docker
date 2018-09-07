@@ -6,7 +6,6 @@ RUN apt-get update --fix-missing \
     git \
     m4 \
     pkg-config \
-    libmetis-dev \
 &&  apt-get clean \
 &&  rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
 
