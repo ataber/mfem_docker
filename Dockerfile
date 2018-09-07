@@ -21,6 +21,7 @@ RUN cd /tmp && \
              -DMFEM_USE_PETSC=YES \
              -DVERBOSE=YES \
              -DMFEM_USE_OPENMP=YES \
+             -DPETSC_DIR=$PETSC_DIR \
              -DMFEM_USE_MPI=YES && \
     make -j $(cat /proc/cpuinfo | grep processor | wc -l) && \
     make install && \
