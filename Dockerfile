@@ -11,6 +11,7 @@ RUN apt-get update --fix-missing \
 &&  apt-get clean \
 &&  rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
 
+ENV HYPRE_DIR /usr
 RUN cd /tmp && \
     git clone https://github.com/mfem/mfem.git && \
     cd mfem && \
