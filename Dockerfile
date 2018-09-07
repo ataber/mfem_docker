@@ -1,4 +1,4 @@
-FROM ataber/petsc
+FROM ataber/vtk
 
 RUN apt-get update --fix-missing \
 &&  apt-get upgrade -y --force-yes \
@@ -6,7 +6,6 @@ RUN apt-get update --fix-missing \
     git \
     m4 \
     pkg-config \
-    libvtk6-dev \
     libmetis-dev \
     libhypre-dev \
 &&  apt-get clean \
@@ -19,6 +18,8 @@ RUN cd /tmp && \
     cd build && \
     cmake .. -DCMAKE_INSTALL_PREFIX=/opt/mfem \
              -DMFEM_THREAD_SAFE=YES \
+             -DMFEM_USE_PETSC=YES \
+             -DVERBOSE=YES \
              -DMFEM_USE_OPENMP=YES \
              -DMFEM_USE_MPI=YES && \
     make -j $(cat /proc/cpuinfo | grep processor | wc -l) && \
