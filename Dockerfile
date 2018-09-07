@@ -7,11 +7,17 @@ RUN apt-get update --fix-missing \
     m4 \
     pkg-config \
     libmetis-dev \
-    libhypre-dev \
 &&  apt-get clean \
 &&  rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
 
-ENV HYPRE_DIR /usr/include/hypre/
+RUN cd /tmp && \
+    wget -nv -O- https://computation.llnl.gov/projects/hypre-scalable-linear-solvers-multigrid-methods/download/hypre-2.10.0b.tar.gz | \
+    tar xz && \
+    cd hypre-2.10.0b/src && \
+    ./configure && \
+    make -j $(cat /proc/cpuinfo | grep processor | wc -l)&& \
+    make install && \
+    make clean
 RUN cd /tmp && \
     git clone https://github.com/mfem/mfem.git && \
     cd mfem && \
