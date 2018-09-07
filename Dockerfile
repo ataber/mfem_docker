@@ -20,6 +20,7 @@ RUN cd /tmp && \
              -DMFEM_THREAD_SAFE=YES \
              -DMFEM_USE_PETSC=YES \
              -DVERBOSE=YES \
+             -DPETSC_ARCH= \
              -DMFEM_USE_OPENMP=YES \
              -DPETSC_DIR=$PETSC_DIR \
              -DMFEM_USE_MPI=YES && \
